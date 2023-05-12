@@ -1,0 +1,13 @@
+.register {
+    border: 10px solid red;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+    padding-top: 10rem;
+}
+
+.register_title {
+    margin-bottom: 3rem;
+}
