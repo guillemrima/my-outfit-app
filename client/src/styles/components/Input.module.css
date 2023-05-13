@@ -1,3 +1,16 @@
 .input input {
     width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+    padding: 0.5rem 0;
+    padding-left: 4rem;
+    font-size: 0.8rem;
+    color: white;
+    font-weight: 600;
+}
+
+.input input:focus {
+    outline: none;
+    border-bottom: 1px solid rgb(255, 255, 255);
 }
