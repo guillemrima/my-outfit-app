@@ -8,6 +8,7 @@ import style from './../../styles/pages/Register.module.css'
 export default () => {
 
     const [formData, setFormData] = useState ({
+        username : "",
         email : "",
         password : "",
         confirmedPassword: ""
@@ -28,17 +29,34 @@ export default () => {
             </div>
             <div className={style.register_form}>
                 <form id="register_form">
-                    <div className={style.form_inputField}>
-                        <div className={style.label}>
-                            <label>Email</label>
+                    <div className={style.input_container}>
+                        <div className={style.form_inputField}>
+                            <div className={style.label}>
+                                <label>Username</label>
+                            </div>
+                            <div className={style.input}>
+                                <InputForm 
+                                    type = "text"
+                                    name = "username"
+                                    value = {formData.username}
+                                    handleChange = {handleChange}
+                                />
+                            </div>
+                            
                         </div>
-                        <div className={style.input}>
-                            <InputForm 
-                                type = "text"
-                                name = "email"
-                                value = {formData.email}
-                                handleChange = {handleChange}
-                            />
+                        <div className={style.form_inputField}>
+                            <div className={style.label}>
+                                <label>Email</label>
+                            </div>
+                            <div className={style.input}>
+                                <InputForm 
+                                    type = "text"
+                                    name = "email"
+                                    value = {formData.email}
+                                    handleChange = {handleChange}
+                                />
+                            </div>
+                            
                         </div>
                     </div>
                     <div className={style.form_inputField}>

@@ -39,7 +39,9 @@
 }
 
 .form_submitButton {
-    margin-bottom: 1rem;
+    padding-bottom: 3rem;
+
+
 }
 
 .login_link {
@@ -55,5 +57,11 @@
 .login_link span {
     color: white;
     font-weight: 600;
+}
+
+.input_container {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 1rem;
 }
 
