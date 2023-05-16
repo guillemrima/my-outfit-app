@@ -7,7 +7,19 @@ import style from './../../styles/pages/Register.module.css'
 
 export default () => {
 
+    const [formData, setFormData] = useState ({
+        email : "",
+        password : "",
+        confirmedPassword: ""
+    })
 
+    const handleChange = (e) => {
+        const {name, value, type, checked} = e.target
+        setFormData (prevFormData => ({
+            ...prevFormData,
+            [name]: type === "checkbox" ? checked : value
+        }))
+    }
 
     return (
         <section className={style.register}>
@@ -24,11 +36,8 @@ export default () => {
                             <InputForm 
                                 type = "text"
                                 name = "email"
-                                // placeholder = ""
-                                // value = {}
-                                // handleChange = {}
-                                // handleFocus = {}
-                                // handleBlur = {}
+                                value = {formData.email}
+                                handleChange = {handleChange}
                             />
                         </div>
                     </div>
@@ -39,14 +48,26 @@ export default () => {
                         <div className={style.input}>
                             <PasswordInputForm
                                 type = "text"
-                                name = "email"
-                                // placeholder = ""
-                                // value = {}
-                                // handleChange = {}
-                                // handleFocus = {}
-                                // handleBlur = {}
+                                name = "password"
+                                value = {formData.password}
+                                handleChange = {handleChange}
                             />
                         </div>
+                        
+                    </div>
+                    <div className={style.form_inputField}>
+                        <div className={style.label}>
+                            <label>Confirm password</label>
+                        </div>
+                        <div className={style.input}>
+                            <PasswordInputForm
+                                type = "text"
+                                name = "confirmedPassword"
+                                value = {formData.confirmedPassword}
+                                handleChange = {handleChange}
+                            />
+                        </div>
+                        
                     </div>
                     <div className={style.form_submitButton}>
                         <ButtonForm 
