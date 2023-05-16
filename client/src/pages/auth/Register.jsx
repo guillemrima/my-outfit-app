@@ -4,10 +4,11 @@ import ButtonForm from './../../components/Button/Button';
 import InputForm from './../../components/InputField/Input';
 import PasswordInputForm from './../../components/InputField/PasswordInput';
 import style from './../../styles/pages/Register.module.css'
+import passwordValidator from '../../utilities/password_validator';
 
 export default () => {
 
-    const [formData, setFormData] = useState ({
+    const [userData, setUserData] = useState ({
         username : "",
         email : "",
         password : "",
@@ -16,11 +17,17 @@ export default () => {
 
     const handleChange = (e) => {
         const {name, value, type, checked} = e.target
-        setFormData (prevFormData => ({
-            ...prevFormData,
+        setUserData (prevUserData => ({
+            ...prevUserData,
             [name]: type === "checkbox" ? checked : value
         }))
     }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const isValidPassword = passwordValidator(userData);
+        isValidPassword ? console.log("Usuario registrado correctamente") : console.log("Las contraseñas deben coincidir")
+    }
+
 
     return (
         <section className={style.register}>
@@ -28,7 +35,7 @@ export default () => {
                 <h1>REGISTER</h1>
             </div>
             <div className={style.register_form}>
-                <form id="register_form">
+                <form id="register_form" onSubmit={handleSubmit}>
                     <div className={style.input_container}>
                         <div className={style.form_inputField}>
                             <div className={style.label}>
@@ -38,7 +45,7 @@ export default () => {
                                 <InputForm 
                                     type = "text"
                                     name = "username"
-                                    value = {formData.username}
+                                    value = {userData.username}
                                     handleChange = {handleChange}
                                 />
                             </div>
@@ -52,7 +59,7 @@ export default () => {
                                 <InputForm 
                                     type = "text"
                                     name = "email"
-                                    value = {formData.email}
+                                    value = {userData.email}
                                     handleChange = {handleChange}
                                 />
                             </div>
@@ -67,7 +74,7 @@ export default () => {
                             <PasswordInputForm
                                 type = "text"
                                 name = "password"
-                                value = {formData.password}
+                                value = {userData.password}
                                 handleChange = {handleChange}
                             />
                         </div>
@@ -81,7 +88,7 @@ export default () => {
                             <PasswordInputForm
                                 type = "text"
                                 name = "confirmedPassword"
-                                value = {formData.confirmedPassword}
+                                value = {userData.confirmedPassword}
                                 handleChange = {handleChange}
                             />
                         </div>
