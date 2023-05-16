@@ -2,7 +2,7 @@ const { QueryError} = require('sequelize');
 
 module.exports = (app, upload) => {
     const router = require('express').Router();
-    const controller = require('../controllers/register-controller.js');
+    const controller = require('../controllers/user-controller.js');
 
     app.use(function(req, res, next) {
         res.header(
@@ -12,7 +12,7 @@ module.exports = (app, upload) => {
         next();
     });
 
-    router.get('/', controller.prueba)
+    router.get('/', controller.register_user)
 
-    app.use('/api/register', router)
+    app.use('/api/user', router)
 }    
