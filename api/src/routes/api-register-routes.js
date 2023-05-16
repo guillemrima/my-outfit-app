@@ -13,6 +13,7 @@ module.exports = (app, upload) => {
     });
 
     router.get('/', () => {
+        console.log("hola mundo")
     })
 
 

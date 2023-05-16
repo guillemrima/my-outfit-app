@@ -24,17 +24,18 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 
-// var routePath = './src/routes';
+var routePath = './src/routes/';
 
-// fs.readFileSync(routePath).forEach(function(file) {
-//     require(routePath + file)(app, upload)
-// })
+fs.readdirSync(routePath).forEach(function(file) {
+    require(routePath + file)(app, upload)
+})
 
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
     console.log(`✔️  El servidor se ha iniciado correctamente en el puerto ${PORT}`)
 })
+
 
 
 
