@@ -5,6 +5,7 @@ export default (props) => {
     return (
         <button className={style.button}
             type={props.type} 
+            onSubmit={props.handleSubmit}
             form={props.form}>
             {props.placeholder}
         </button>

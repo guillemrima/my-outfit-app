@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import ButtonForm from './../../components/Button/Button';
 import InputForm from './../../components/InputField/Input';
 import PasswordInputForm from './../../components/InputField/PasswordInput';
@@ -14,7 +14,7 @@ export default () => {
         password : "",
         confirmedPassword: ""
     })
-
+    const formRef = useRef(null);
     const handleChange = (e) => {
         const {name, value, type, checked} = e.target
         setUserData (prevUserData => ({
@@ -25,7 +25,11 @@ export default () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const isValidPassword = passwordValidator(userData);
-        isValidPassword ? console.log("Usuario registrado correctamente") : console.log("Las contraseñas deben coincidir")
+        if(isValidPassword) {
+            const form = formRef.current
+            const formData = new FormData(form);
+
+        }
     }
 
 
@@ -35,7 +39,7 @@ export default () => {
                 <h1>REGISTER</h1>
             </div>
             <div className={style.register_form}>
-                <form id="register_form" onSubmit={handleSubmit}>
+                <form id='register_form' ref={formRef} onSubmit={handleSubmit}>
                     <div className={style.input_container}>
                         <div className={style.form_inputField}>
                             <div className={style.label}>
