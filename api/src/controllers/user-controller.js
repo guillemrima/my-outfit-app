@@ -5,8 +5,7 @@ const Op = db.Sequelize.Op;
 exports.create = (req, res)  => {
     User.create(req.body).then(data => {
         res.status(200).send(
-            `✔️ La petición POST ha llegado correctamente al servidor con los siguientes 
-            datos: ${data}`
+            '✔️ La petición POST ha llegado y se ha registrado correctamente a la base de datos'
         );
     }).catch(err => {
         if(err.errors){
@@ -32,7 +31,7 @@ exports.findAll = (req, res) => {
 
     User.findAndCountAll({
         where: condition, 
-        attributes: ['id'],
+        attributes: ['id', 'username', 'email', 'password'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
