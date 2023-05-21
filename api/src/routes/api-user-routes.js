@@ -12,7 +12,8 @@ module.exports = (app, upload) => {
         next();
     });
 
-    router.get('/', controller.register_user)
-
-    app.use('/api/user', router)
+    router.post('/', controller.create)
+    router.get('/', controller.findAll);
+    
+    app.use('/api/users', router)
 }    
