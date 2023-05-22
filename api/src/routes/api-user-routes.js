@@ -1,4 +1,5 @@
 const { QueryError} = require('sequelize');
+const validateUserExistence = require('../middlewares/validate-user-existence-middleware')
 
 module.exports = (app, upload) => {
     const router = require('express').Router();
@@ -12,7 +13,7 @@ module.exports = (app, upload) => {
         next();
     });
 
-    router.post('/', controller.create)
+    router.post('/', validateUserExistence, controller.create)
     router.get('/', controller.findAll);
     
     app.use('/api/users', router)

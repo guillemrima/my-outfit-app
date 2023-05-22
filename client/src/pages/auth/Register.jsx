@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import ButtonForm from './../../components/Button/Button';
 import InputForm from './../../components/InputField/Input';
 import PasswordInputForm from './../../components/InputField/PasswordInput';
@@ -38,7 +38,7 @@ export default () => {
                 body: JSON.stringify(formDataValues)
             })
             .then(res => res.json())
-            .then(data => {console.log('✔️Datos enviados correctamente al servidor')})
+            .then(data => {console.log(data.message)})
             .catch(error => console.log(error))
             
         }
