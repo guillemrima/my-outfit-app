@@ -44,7 +44,6 @@ export default () => {
         }
     }
 
-
     return (
         <section className={style.register}>
             <div className={style.register_title}>
