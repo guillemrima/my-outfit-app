@@ -8,7 +8,7 @@ const validateUserExistence = async (req, res, next) => {
         const existingUser = await User.findOne({where: { email }});
 
         if (existingUser) {
-            return res.status(400).json({message: 'Ya se ha registrado un usuario con este email'})
+            return res.status(400).json({message: 'Ya se ha registrado un usuario con este email', status:400})
         }
         next();
     } catch (error) {

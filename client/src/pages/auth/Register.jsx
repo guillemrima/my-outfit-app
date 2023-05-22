@@ -14,7 +14,8 @@ export default () => {
         password : "",
         confirmedPassword: ""
     })
-
+    const [isInvalidRegister, setIsInvalidRegister] = useState(false)
+        console.log(isInvalidRegister)
     const handleChange = (e) => {
         const {name, value, type, checked} = e.target
         setUserData (prevUserData => ({
@@ -38,9 +39,17 @@ export default () => {
                 body: JSON.stringify(formDataValues)
             })
             .then(res => res.json())
-            .then(data => {console.log(data.message)})
+            .then(data => {
+                console.log(data.status)
+                if(data.status==400){
+                    setIsInvalidRegister(prevRegisterState => ({
+                        prevRegisterState : true
+                    }))
+                }else{setIsInvalidRegister(prevRegisterState => ({
+                    prevRegisterState : false
+                }))}
+            })
             .catch(error => console.log(error))
-            
         }
     }
 
@@ -121,6 +130,7 @@ export default () => {
             <div className={style.login_link}>
                 <p>Already have an Account? <span>Sign In</span></p>
             </div>
+            {isInvalidRegister && <div><p>Existing user with this email</p></div>}
         </section>
     )
 }
