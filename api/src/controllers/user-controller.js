@@ -4,9 +4,9 @@ const Op = db.Sequelize.Op;
 
 exports.create = (req, res)  => {
     User.create(req.body).then(data => {
-        res.status(200).send(
-            '✔️ La petición POST ha llegado y se ha registrado correctamente a la base de datos'
-        );
+        res.status(200).send({
+            message: '✔️ La petición POST ha llegado y se ha registrado correctamente a la base de datos'
+    });
     }).catch(err => {
         if(err.errors){
             res.status(422).send({

@@ -14,7 +14,7 @@ export default () => {
         password : "",
         confirmedPassword: ""
     })
-    const formRef = useRef(null);
+
     const handleChange = (e) => {
         const {name, value, type, checked} = e.target
         setUserData (prevUserData => ({
@@ -26,9 +26,21 @@ export default () => {
         e.preventDefault();
         const isValidPassword = passwordValidator(userData);
         if(isValidPassword) {
-            const form = formRef.current
-            const formData = new FormData(form);
-
+            const formData = new FormData(e.target);
+            formData.delete('confirmedPassword')
+            const formDataValues = Object.fromEntries(formData.entries())
+            
+            fetch(('http://localhost:8080/api/users'),{
+                method: 'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify(formDataValues)
+            })
+            .then(res => res.json())
+            .then(data => {console.log('✔️Datos enviados correctamente al servidor')})
+            .catch(error => console.log(error))
+            
         }
     }
 
@@ -39,7 +51,7 @@ export default () => {
                 <h1>REGISTER</h1>
             </div>
             <div className={style.register_form}>
-                <form id='register_form' ref={formRef} onSubmit={handleSubmit}>
+                <form id='register_form' onSubmit={handleSubmit}>
                     <div className={style.input_container}>
                         <div className={style.form_inputField}>
                             <div className={style.label}>
